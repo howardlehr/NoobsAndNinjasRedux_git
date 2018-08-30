@@ -21,11 +21,6 @@ public class ContLevel : MonoBehaviour
         float height = 2.0f * Camera.main.orthographicSize;
         screenWidthInPoints = height * Camera.main.aspect;
 
-        //create rooms
-        //room[0] = new GameObject();
-        //room[1] = new GameObject();
-        //room[2] = new GameObject();
-
         int i;
         for (i = 1; i < numberOfRooms; i++)
         {
