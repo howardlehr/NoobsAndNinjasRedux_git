@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayCamCont.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ParallaxScroll.cs" Line="11" Column="37" />
+      <File FileName="Assets\Scripts\PlayCamCont.cs" Line="39" Column="40" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Howard Lehr\UNITY\NoobsAndNinjasRedux\Assets\Scripts\CameraFollow.cs" line="11" column="65" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
