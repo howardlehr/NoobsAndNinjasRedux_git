@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class ShipBounce : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject thePlayer;
 
-    private Rigidbody2D rb2d;
-    
     // Use this for initialization
     void Start ()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-	}
+        
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
-            //forwardDirection *= -1f;
-            Destroy(other.gameObject);
+            thePlayer = other.gameObject;
+            thePlayer.GetComponent<PlayerControl>().justBounced = true;
+            StartCoroutine(WaitForBounce());
         }
+    }
+
+    IEnumerator WaitForBounce()
+    {
+        yield return new WaitForSeconds (.5f);
+        thePlayer.GetComponent<PlayerControl>().justBounced = false;
     }
 }

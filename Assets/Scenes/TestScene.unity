@@ -1000,6 +1000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3789f75130264ea2812e117e995fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1494537655}
 --- !u!1 &1463698677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1047,7 @@ GameObject:
   - component: {fileID: 1494537659}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,14 +1116,15 @@ MonoBehaviour:
   player: {fileID: 1494537655}
   rbPlayer: {fileID: 1494537658}
   floorDetectTransform: {fileID: 636633649}
-  forwardDirection: 1
-  forwardSpeed: 8
-  myTouchX: 0
-  maxUpSpeed: 10
   floorDetectLayerMask:
     serializedVersion: 2
     m_Bits: 0
   onFloor: 0
+  justBounced: 0
+  forwardDirection: 1
+  forwardSpeed: 8
+  myTouchX: 0
+  maxUpSpeed: 10
 --- !u!1 &1585904808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3789f75130264ea2812e117e995fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1494537655}
 --- !u!1 &1693552326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1285,7 @@ MonoBehaviour:
   - {fileID: 1913525782076644, guid: 9538fa3502998ac45826c32eff2600da, type: 2}
   - {fileID: 1543703537577128, guid: 9c5998544f9b2be4db79d47662c94edd, type: 2}
   - {fileID: 1844477165784636, guid: 9da4418443a610344b97c89694a0fdda, type: 2}
-  oPowerSource: {fileID: 1769436461381748, guid: 5f89255194d59544685f343c50619c1f,
+  oPowerSource: {fileID: 1669343893008432, guid: 5f89255194d59544685f343c50619c1f,
     type: 2}
 --- !u!4 &1774065701
 Transform:

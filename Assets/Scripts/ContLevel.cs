@@ -6,7 +6,6 @@ public class ContLevel : MonoBehaviour
 {
     public GameObject[] room = new GameObject[3];
 	public GameObject oPowerSource;
-    //public GameObject oTeleporterBase;
 
     private GameObject roomR;
     private GameObject roomL;
