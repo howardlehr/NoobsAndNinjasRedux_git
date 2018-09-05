@@ -574,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863f77c2a1fd4964ebefd70ac3e8343e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1494537655}
   BgBack: {fileID: 1848171249}
   BgMid: {fileID: 29449402}
   BgFront: {fileID: 2019961809}

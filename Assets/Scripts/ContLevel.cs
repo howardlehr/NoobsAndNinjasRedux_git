@@ -12,7 +12,7 @@ public class ContLevel : MonoBehaviour
     private GameObject powerSourceL;
     private GameObject powerSourceR;
     private float screenWidthInPoints;
-    private int numberOfRooms = 3;
+    private int numberOfRooms = 2;
     private int roomNumber;
 
     void Start()

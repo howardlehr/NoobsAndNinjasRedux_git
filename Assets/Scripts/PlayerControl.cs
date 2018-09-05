@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody2D rbPlayer;
-    //public SpriteRenderer jets;
     public Transform floorDetectTransform;
     public LayerMask floorDetectLayerMask;
     public bool onFloor;
@@ -23,7 +22,6 @@ public class PlayerControl : MonoBehaviour
     {
         forwardSpeed = 5f;
         maxUpSpeed = 10f;
-        //jets = player.jets.GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -42,10 +40,8 @@ public class PlayerControl : MonoBehaviour
 
             rbPlayer.velocity = new Vector2(forwardSpeed * forwardDirection, rbPlayer.velocity.y);
             player.transform.localScale = new Vector2(forwardDirection, 1f);
-            //jets.enabled = true;
         } else {
             rbPlayer.gravityScale = 3;
-            //jets.enabled = false;
         }
 
         //limit up/down speed

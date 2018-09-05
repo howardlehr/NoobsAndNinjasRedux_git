@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ParallaxScroll : MonoBehaviour
 {
+    public GameObject player;
     public Renderer BgBack;
     public Renderer BgMid;
     public Renderer BgFront;
@@ -14,6 +15,7 @@ public class ParallaxScroll : MonoBehaviour
 
     void LateUpdate()
     {
+        offset = player.transform.position.x;
         float BgMidOffset = offset * BgMidSpeed;
         float BgFrontOffset = offset * BgFrontSpeed;
 
