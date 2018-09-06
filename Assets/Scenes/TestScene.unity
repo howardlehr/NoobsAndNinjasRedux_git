@@ -743,7 +743,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1008642566}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: dae3933368100c54e950afa6f79796c1, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1074,7 +1074,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1494537655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 716311078}
@@ -1126,6 +1126,7 @@ MonoBehaviour:
   forwardSpeed: 8
   myTouchX: 0
   maxUpSpeed: 10
+  myRotationSpeed: 0.5
 --- !u!1 &1585904808
 GameObject:
   m_ObjectHideFlags: 0

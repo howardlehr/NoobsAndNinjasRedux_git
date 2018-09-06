@@ -90,12 +90,12 @@
     <Compile Include="Assets\Scripts\FollowCam.cs" />
     <Compile Include="Assets\Scripts\JetsOnOff.cs" />
     <Compile Include="Assets\Scripts\ParallaxScroll.cs" />
-    <Compile Include="Assets\Scripts\PlayCamCont.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ShipBounce.cs" />
     <Compile Include="Assets\Scripts\ShipSwap.cs" />
     <Compile Include="Assets\Scripts\archive\CameraControl.cs" />
     <Compile Include="Assets\Scripts\archive\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\archive\PlayCamCont.cs" />
     <Compile Include="Assets\Scripts\archive\TargetFrameRate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

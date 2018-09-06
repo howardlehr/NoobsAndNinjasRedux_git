@@ -16,12 +16,15 @@ public class PlayerControl : MonoBehaviour
     public float myTouchX;
     public float maxUpSpeed;
 
+    private float myRotation;
+    public float myRotationSpeed = .5f;
     private bool dead;
 
     void Start ()
     {
         forwardSpeed = 5f;
         maxUpSpeed = 10f;
+        myRotation = 0;
     }
 
     private void FixedUpdate()
@@ -38,10 +41,19 @@ public class PlayerControl : MonoBehaviour
             else
                 forwardDirection = -1;
 
+            //set horizontal velocity
             rbPlayer.velocity = new Vector2(forwardSpeed * forwardDirection, rbPlayer.velocity.y);
-            player.transform.localScale = new Vector2(forwardDirection, 1f);
+            player.transform.localScale = new Vector2(forwardDirection, 1f);//facing direction
+            myRotation += forwardDirection * myRotationSpeed;
+            myRotation = Mathf.Clamp(myRotation,-7f,7f);
+            transform.eulerAngles = Vector3.forward * myRotation;
         } else {
             rbPlayer.gravityScale = 3;
+            if(Mathf.Abs(myRotation) > 0)
+            {
+                myRotation -= forwardDirection * myRotationSpeed;
+            }
+            transform.eulerAngles = Vector3.forward * myRotation;
         }
 
         //limit up/down speed
