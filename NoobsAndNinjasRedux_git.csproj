@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\ContLevel.cs" />
     <Compile Include="Assets\Scripts\FollowCam.cs" />
     <Compile Include="Assets\Scripts\JetsOnOff.cs" />
+    <Compile Include="Assets\Scripts\NoobControl.cs" />
     <Compile Include="Assets\Scripts\ParallaxScroll.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ShipBounce.cs" />
