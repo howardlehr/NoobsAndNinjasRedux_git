@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 172187}
   - component: {fileID: 172184}
   - component: {fileID: 172188}
+  - component: {fileID: 172189}
   m_Layer: 0
   m_Name: noob
   m_TagString: Noob
@@ -194,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 172183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.750915, y: -4.6, z: 0}
+  m_LocalPosition: {x: 8.18, y: -4.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -227,6 +228,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1494537657}
+  noobRunSpeed: 0.025
+--- !u!95 &172189
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 172183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef5f17e8876671642a6ca71298c792cd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &29449400
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +542,7 @@ GameObject:
   - component: {fileID: 636633650}
   m_Layer: 8
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1239,7 +1258,6 @@ MonoBehaviour:
   floorDetectLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  onFloor: 0
   justBounced: 0
   forwardDirection: 1
   forwardSpeed: 8
@@ -1431,6 +1449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809757026}
   - component: {fileID: 1809757027}
+  - component: {fileID: 1809757028}
   m_Layer: 0
   m_Name: spr_oShuriken_0
   m_TagString: Untagged
@@ -1493,6 +1512,23 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!95 &1809757028
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1809757025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1cd18cc57093dfe488e69e4882803968, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1848171248
 GameObject:
   m_ObjectHideFlags: 0

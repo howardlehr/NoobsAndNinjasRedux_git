@@ -8,8 +8,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject player;
     public Rigidbody2D rbPlayer;
     public Transform floorDetectTransform;
-    public LayerMask floorDetectLayerMask;
-    public bool onFloor;
+    //public LayerMask floorDetectLayerMask;
     public bool justBounced = false;
     public int forwardDirection;
     public float forwardSpeed;
@@ -29,7 +28,6 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (Input.GetButton("Fire1") && !justBounced)
         {
             //vertical motion
@@ -58,14 +56,11 @@ public class PlayerControl : MonoBehaviour
 
         //limit up/down speed
         rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, (Mathf.Clamp(rbPlayer.velocity.y,-maxUpSpeed, maxUpSpeed)));
-
-        UpdateOnFloorStatus();
-
     }
-    void UpdateOnFloorStatus()
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        onFloor = Physics2D.OverlapCircle(floorDetectTransform.position, 0.1f, floorDetectLayerMask);
-        if (onFloor && !Input.GetButton("Fire1"))
+        if (other.gameObject.CompareTag("Floor") && !Input.GetButton("Fire1"))
         {
             forwardDirection = 0;
             rbPlayer.velocity = new Vector2(0, rbPlayer.velocity.y);
