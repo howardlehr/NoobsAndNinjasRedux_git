@@ -8,6 +8,7 @@ public class JetsOnOff : MonoBehaviour
     public GameObject player;
     private SpriteRenderer jets;
     private bool didBounce;
+    private bool dead;
 
     void Start()
     {
@@ -18,8 +19,9 @@ public class JetsOnOff : MonoBehaviour
     {
 
         didBounce = player.GetComponent<PlayerControl>().justBounced;
+        dead = player.GetComponent<PlayerControl>().dead;
 
-        if (Input.GetButton("Fire1") && !didBounce)//(jetActive)
+        if (Input.GetButton("Fire1") && !didBounce && !dead)//(jetActive)
         {
             jets.enabled = true;
         }

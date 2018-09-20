@@ -7,17 +7,19 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody2D rbPlayer;
-    public Transform floorDetectTransform;
-    //public LayerMask floorDetectLayerMask;
     public bool justBounced = false;
     public int forwardDirection;
     public float forwardSpeed;
     public float myTouchX;
     public float maxUpSpeed;
+    public static int riders;
+    public GameObject[] noobs;
+    public bool dead;
 
     private float myRotation;
     public float myRotationSpeed = .5f;
-    private bool dead;
+
+    public GameObject dGameOver;
 
     void Start ()
     {
@@ -28,7 +30,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetButton("Fire1") && !justBounced)
+        if (Input.GetButton("Fire1") && !justBounced && !dead)
         {
             //vertical motion
             rbPlayer.gravityScale = -4;
@@ -58,12 +60,38 @@ public class PlayerControl : MonoBehaviour
         rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, (Mathf.Clamp(rbPlayer.velocity.y,-maxUpSpeed, maxUpSpeed)));
     }
 
+    public void FindNoobs()
+    {
+        noobs = GameObject.FindGameObjectsWithTag("Noob");
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Floor") && !Input.GetButton("Fire1"))
         {
             forwardDirection = 0;
             rbPlayer.velocity = new Vector2(0, rbPlayer.velocity.y);
+            if (riders < 4 && !dead)
+            {
+                foreach (GameObject n in noobs)
+                {
+                    if (n != null)
+                    {
+                        n.GetComponent<NoobControl>().RunToShip();
+                    }
+                }
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("ObstacleExplosion"))
+        {
+            Debug.Log("DEAD by EXPLOSION");
+            dead = true;
+            player.transform.localScale = new Vector2(forwardDirection, -1f);//turn upside down
+            dGameOver.SetActive(true);
         }
     }
 }

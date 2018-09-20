@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Noob
   - Floor
+  - Rider
+  - ObstacleExplosion
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -43,9 +46,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Base
+    uniqueID: 1706257243
+    locked: 0
   - name: Objects
     uniqueID: 3939196113
     locked: 0
   - name: Player
     uniqueID: 3409691985
+    locked: 0
+  - name: Characters
+    uniqueID: 2651885825
+    locked: 0
+  - name: UI
+    uniqueID: 2983787803
     locked: 0
