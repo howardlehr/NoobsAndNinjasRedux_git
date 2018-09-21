@@ -6,10 +6,7 @@ public class NoobControl : MonoBehaviour {
 
     GameObject player;
     Animator anim;
-    GameObject rider1;
-    GameObject rider2;
-    GameObject rider3;
-    GameObject rider4;
+    
     Rigidbody2D myRigidBody;
     GameObject[] noobs;
 
@@ -23,7 +20,7 @@ public class NoobControl : MonoBehaviour {
         anim = GetComponent<Animator> ();
         localScaleX = transform.localScale.x;
         myRigidBody = GetComponent<Rigidbody2D>();
-        FindRiders();
+        //FindRiders();
         StartCoroutine(Blink());
     }
 
@@ -64,30 +61,11 @@ public class NoobControl : MonoBehaviour {
         }
     }
 
-    public void FindRiders()
+    public void StopRunning()
     {
-        rider1 = GameObject.Find("rider_1");
-        rider2 = GameObject.Find("rider_2");
-        rider3 = GameObject.Find("rider_3");
-        rider4 = GameObject.Find("rider_4");
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-            //increment riders
-            int getRiders = PlayerControl.riders;
-            getRiders++;
-            PlayerControl.riders = getRiders;
-            //player.GetComponent<PlayerControl>().AddSubtractRiders();
-            Debug.Log(PlayerControl.riders);
-            rider1.GetComponent<RiderCont_1>().TurnOnOff();
-            rider2.GetComponent<RiderCont_1>().TurnOnOff();
-            rider3.GetComponent<RiderCont_1>().TurnOnOff();
-            rider4.GetComponent<RiderCont_1>().TurnOnOff();
-        }
+        myRigidBody.velocity = new Vector2(0, 0);
+        anim.SetInteger("AnimState", 0);
+        Debug.Log("Stopped Running");
     }
 
     IEnumerator Blink()

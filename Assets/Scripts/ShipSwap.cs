@@ -10,14 +10,14 @@ public class ShipSwap : MonoBehaviour
     public GameObject oSaucer;
     public GameObject oTruck;
 
-    GameObject[] noobs;
+    //GameObject[] noobs;
 
     void Start ()
     {
         CurrentShip = "oSaucer";
         oSaucer.SetActive(true);
         oTruck.SetActive(false);
-        noobs = GameObject.FindGameObjectsWithTag("Noob");
+        //noobs = GameObject.FindGameObjectsWithTag("Noob");
     }
 
     void Update()
@@ -43,11 +43,12 @@ public class ShipSwap : MonoBehaviour
                 oTruck.SetActive(false);
                 break;
             }
-            noobs = GameObject.FindGameObjectsWithTag("Noob");
-            foreach (GameObject n in noobs)
-            {
-                n.GetComponent<NoobControl>().FindRiders();
-            }
+            player.GetComponent<PlayerControl>().FindRiders();
+            //noobs = GameObject.FindGameObjectsWithTag("Noob");
+            //foreach (GameObject n in noobs)
+            //{
+            //    n.GetComponent<NoobControl>().FindRiders();
+            //}
             //player.GetComponent<PlayerControl>().FindRiders();
 
         }

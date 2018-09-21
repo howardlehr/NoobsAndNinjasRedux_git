@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     public float myTouchX;
     public float maxUpSpeed;
     public static int riders;
+    public GameObject[] riderGroup;
     public GameObject[] noobs;
     public bool dead;
 
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
         forwardSpeed = 5f;
         maxUpSpeed = 10f;
         myRotation = 0;
+        FindRiders();
     }
 
     private void FixedUpdate()
@@ -65,6 +67,14 @@ public class PlayerControl : MonoBehaviour
         noobs = GameObject.FindGameObjectsWithTag("Noob");
     }
 
+    public void FindRiders()
+    {
+        riderGroup[0] = GameObject.Find("rider_1");
+        riderGroup[1] = GameObject.Find("rider_2");
+        riderGroup[2] = GameObject.Find("rider_3");
+        riderGroup[3] = GameObject.Find("rider_4");
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Floor") && !Input.GetButton("Fire1"))
@@ -82,6 +92,29 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+
+        if (other.gameObject.CompareTag("Noob"))
+        {
+            DestroyObject(other.gameObject);
+            if (riders < 4)
+            {
+                riders++;
+                foreach (GameObject n in riderGroup)
+                {
+                    n.GetComponent<RiderCont_1>().TurnOnOff();
+                }
+                if(riders > 3)
+                {
+                    foreach (GameObject n in noobs)
+                    {
+                        if (n != null)
+                        {
+                            n.GetComponent<NoobControl>().StopRunning();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -92,6 +125,22 @@ public class PlayerControl : MonoBehaviour
             dead = true;
             player.transform.localScale = new Vector2(forwardDirection, -1f);//turn upside down
             dGameOver.SetActive(true);
+        }
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Base"))
+        {
+            if (riders > 0)
+            {
+                riders--;
+                foreach (GameObject n in riderGroup)
+                {
+                    n.GetComponent<RiderCont_1>().TurnOnOff();
+                }
+            }
         }
     }
 }
