@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212398058070057190}
   - component: {fileID: 61695202601866792}
   m_Layer: 0
-  m_Name: Pad
+  m_Name: pad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0edede74181bb4f4280b281324792423, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bddf02dc380d0b34abf8842e2972c2b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

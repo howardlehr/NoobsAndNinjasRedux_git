@@ -10,6 +10,10 @@ TagManager:
   - ObstacleExplosion
   - Room
   - Base
+  - Ceiling
+  - Door
+  - Ninja
+  - NinjaParachute
   layers:
   - Default
   - TransparentFX

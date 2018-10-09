@@ -85,17 +85,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\RiderCont.cs" />
-    <Compile Include="Assets\RiderCont_1.cs" />
-    <Compile Include="Assets\Scripts\CameraRatio.cs" />
+    <Compile Include="Assets\Scripts\Characters\BloodSplatHorizontal.cs" />
+    <Compile Include="Assets\Scripts\Characters\Ninja.cs" />
+    <Compile Include="Assets\Scripts\Characters\NinjaChute.cs" />
+    <Compile Include="Assets\Scripts\Characters\NinjaParachute.cs" />
+    <Compile Include="Assets\Scripts\Characters\NoobControl.cs" />
+    <Compile Include="Assets\Scripts\Characters\NoobSafe.cs" />
     <Compile Include="Assets\Scripts\ContLevel.cs" />
-    <Compile Include="Assets\Scripts\FollowCam.cs" />
-    <Compile Include="Assets\Scripts\JetsOnOff.cs" />
-    <Compile Include="Assets\Scripts\NoobControl.cs" />
-    <Compile Include="Assets\Scripts\ParallaxScroll.cs" />
-    <Compile Include="Assets\Scripts\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\ShipBounce.cs" />
-    <Compile Include="Assets\Scripts\ShipSwap.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
+    <Compile Include="Assets\Scripts\GameControl.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\Shuriken.cs" />
+    <Compile Include="Assets\Scripts\Pad.cs" />
+    <Compile Include="Assets\Scripts\Player\CeilingCheck.cs" />
+    <Compile Include="Assets\Scripts\Player\FollowCam.cs" />
+    <Compile Include="Assets\Scripts\Player\JetsOnOff.cs" />
+    <Compile Include="Assets\Scripts\Player\ParallaxCamMenu.cs" />
+    <Compile Include="Assets\Scripts\Player\ParallaxScroll.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\Player\RiderCont.cs" />
+    <Compile Include="Assets\Scripts\Player\ShipBounce.cs" />
+    <Compile Include="Assets\Scripts\Player\ShipSwap.cs" />
+    <Compile Include="Assets\Scripts\Room.cs" />
+    <Compile Include="Assets\Scripts\SpawnNoobs.cs" />
+    <Compile Include="Assets\Scripts\UI\CameraRatio.cs" />
+    <Compile Include="Assets\Scripts\UI\ContHud.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuButtonCont.cs" />
+    <Compile Include="Assets\Scripts\UI\RoomChange.cs" />
     <Compile Include="Assets\Scripts\archive\CameraControl.cs" />
     <Compile Include="Assets\Scripts\archive\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\archive\PlayCamCont.cs" />
