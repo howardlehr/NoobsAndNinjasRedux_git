@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuButtonCont : MonoBehaviour {
 
     public GameObject menuShip;
+    public GameObject[] ships;
 
 	// Use this for initialization
 	void Start () {
@@ -12,8 +13,9 @@ public class MenuButtonCont : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        ChangeShipGraphic();	
 	}
 
     public void ChangeLevel()
@@ -28,10 +30,21 @@ public class MenuButtonCont : MonoBehaviour {
     public void ChangeShipForward()
     {
         GameControl.control.currentShip++;
-        if (GameControl.control.currentShip >= menuShip.GetComponent<ShipSwap>().ships.Length)
+        ChangeShipGraphic();
+        GameControl.control.SaveGame();
+    }
+
+    public void ChangeShipGraphic()
+    {
+        if (GameControl.control.currentShip >= ships.Length)
         {
             GameControl.control.currentShip = 0;
         }
-        menuShip.GetComponent<ShipSwap>().ChangeShip();
+        foreach (GameObject s in ships)
+        {
+            s.SetActive(false);
+        }
+        ships[GameControl.control.currentShip].SetActive(true);
     }
+        
 }

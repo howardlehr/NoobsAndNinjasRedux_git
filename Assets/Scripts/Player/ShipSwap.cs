@@ -23,6 +23,5 @@ public class ShipSwap : MonoBehaviour
         {
             player.GetComponent<PlayerControl>().FindRiders();
         }
-        
     }
 }
