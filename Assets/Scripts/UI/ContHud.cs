@@ -8,25 +8,13 @@ public class ContHud : MonoBehaviour {
     public Text levelText;
     public Text nuggetText;
     public Text rubyText;
-
-    //string levelNumber;
-    //string nuggetNumber;
-    //string rubyNumber;
-
-	// Use this for initialization
-	void Start ()
-    {
-        //levelNumber = 5;
-
-        
-    }
 	
 	// Update is called once per frame
 	void LateUpdate ()
     {
         //levelNumber = levelText.GetComponent<Text>();
-        levelText.text = GameControl.control.level.ToString();
-        nuggetText.text = GameControl.control.noobNuggets.ToString();
-        rubyText.text = GameControl.control.rubies.ToString();
+        levelText.text = GameControl.control.level.ToString("N0");
+        nuggetText.text = GameControl.control.noobNuggets.ToString("N0");
+        rubyText.text = GameControl.control.rubies.ToString("N0");
     }
 }

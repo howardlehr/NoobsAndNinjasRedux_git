@@ -9,29 +9,32 @@ public class NinjaParachute : MonoBehaviour {
     public GameObject[] myBloodHoriz;
     public GameObject myGroundNinja;
     public Rigidbody2D myRb;
+    public GameObject mySpeechBubble;
     Animator myAnim;
-    
 
     public float myDownSpeed;
-    bool falling;
+    public bool falling;
+    public bool flying;
     float bounceDirection;
+    public float bounceHeight;
     public float myRotation;
     public float myAngle;
 
-	void Start ()
+	void OnEnable ()
     {
         myAnim = GetComponent<Animator>();
+        mySpeechBubble = transform.Find("speech_bubble").gameObject;
         myDownSpeed = -5f;
         myRb.velocity = new Vector2(0, myDownSpeed);
         player = GameObject.Find("Player");
         myRotation = 25f;
     }
-	
-    private void OnTriggerEnter2D(Collider2D other)
+
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Floor"))
         {
-            if (falling)
+            if (flying == true || falling == true)
             {
                 GroundSplat();
             }
@@ -48,26 +51,36 @@ public class NinjaParachute : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Player"))
         {
-            //Debug.Log(other);
-            if (!falling)
+            bounceDirection = Mathf.Sign(transform.position.x - other.transform.position.x);
+            if (!falling && !flying && player.GetComponent<PlayerControl>().forwardDirection == 0)
             {
-                bounceDirection = Mathf.Sign(transform.position.x - other.transform.position.x);
-                if (player.GetComponent<PlayerControl>().forwardDirection != 0)
+                //sommersault
+                myChute.SetActive(false);
+                myAnim.SetInteger("AnimState", 2);
+                myRb.velocity = new Vector2(5f * bounceDirection, 5f);
+                myRb.gravityScale = 1;
+                transform.localScale = new Vector2(bounceDirection, transform.localScale.y);
+                //set rotation direction and call rotation routine
+                myRotation *= -bounceDirection;
+                InvokeRepeating("SummerSaultRotation", .05f, .05f);
+            }
+            else
+            {
+                bounceHeight = transform.position.y - other.transform.position.y;
+                if(bounceHeight > 1.5)
                 {
-                    AirSplat();
+                    player.GetComponent<PlayerControl>().ShipBlood("top");
+                }
+                else if(bounceHeight < -1.5)
+                {
+                    player.GetComponent<PlayerControl>().ShipBlood("bottom");
                 }
                 else
                 {
-                    //sommersault
-                    myChute.SetActive(false);
-                    myAnim.SetInteger("AnimState", 2);
-                    myRb.velocity = new Vector2(5f * bounceDirection, 5f);
-                    myRb.gravityScale = 1;
-                    transform.localScale = new Vector2(bounceDirection, transform.localScale.y);
-                    //set rotation direction and call rotation routine
-                    myRotation *= -bounceDirection;
-                    InvokeRepeating("SummerSaultRotation",.05f,.05f);
+                    player.GetComponent<PlayerControl>().ShipBlood("front");
                 }
+                
+                AirSplat();
             }
         }
     }
@@ -81,16 +94,29 @@ public class NinjaParachute : MonoBehaviour {
 
     public void Fall()
     {
-        myRb.velocity = new Vector2(0, myDownSpeed*1.5f);
+        myRb.velocity = new Vector2(0, myDownSpeed*2f);
         myAnim.SetInteger("AnimState", 1);
         falling = true;
+        Debug.Log("I'm Falling!!!");
+        SayAaa();
+    }
+
+    public void SayAaa()
+    {
+        mySpeechBubble.GetComponent<Talk>().Say("Aaaa!");
+        mySpeechBubble.GetComponent<Talk>().FixBackwardText(Mathf.Sign(transform.localScale.x));
     }
 
     public void GroundSplat()
     {
+        //myCapColl2D.enabled = false;
+        myRb.gravityScale = 0;
         myRb.velocity = new Vector2(0, 0);
-        myAnim.SetInteger("AnimState", 3);
         transform.position = new Vector2(transform.position.x, -4.8f);
+        //myRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //transform.Rotate(new Vector3(0,0,0));
+        //transform.Rotate(Vector3.right * Time.deltaTime * speed);
+        myAnim.SetInteger("AnimState", 3);
     }
 
     public void AirSplat()
@@ -102,12 +128,12 @@ public class NinjaParachute : MonoBehaviour {
 
             if (bounceDirection > 0)
             {
-                splat.GetComponent<Rigidbody2D>().transform.eulerAngles = Vector3.forward * Random.Range(80f, 110f);
+                splat.GetComponent<Rigidbody2D>().transform.eulerAngles = Vector3.forward * Random.Range(85f, 120f);
             }
             else
             {
                 
-                splat.GetComponent<Rigidbody2D>().transform.eulerAngles = Vector3.forward * Random.Range(260f, 280f);
+                splat.GetComponent<Rigidbody2D>().transform.eulerAngles = Vector3.forward * Random.Range(240f, 275f);
                 
             }
             splat.GetComponent<BloodSplatHorizontal>().FlyAway();

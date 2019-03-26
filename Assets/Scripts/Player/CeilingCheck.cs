@@ -4,41 +4,21 @@ using UnityEngine;
 
 public class CeilingCheck : MonoBehaviour {
 
-    public GameObject[] sparks;
-
-    bool turnOn;
-
-	//void Awake ()
- //   {
-        
- //   }
+    public GameObject sparksEmitter;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Ceiling"))
         {
-            InvokeRepeating("MakeSparks", .01f, .01f);
+            sparksEmitter.SetActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Ceiling"))
+        if (other.gameObject.CompareTag("Ceiling"))
         {
-            CancelInvoke("MakeSparks");
-            foreach (GameObject n in sparks)
-            {
-                n.SetActive(false);
-            }
-        }
-    }
-
-    void MakeSparks()
-    {
-        foreach (GameObject n in sparks)
-        {
-            turnOn = Random.Range(0, 2) == 0 ? false : true;
-            n.SetActive(turnOn);
+            sparksEmitter.SetActive(false);
         }
     }
 }

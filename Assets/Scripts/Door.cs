@@ -9,6 +9,11 @@ public class Door : MonoBehaviour {
         StartCoroutine(CloseDoor());
 	}
 
+    private void OnDisable()
+    {
+        StopCoroutine(CloseDoor());
+    }
+
     IEnumerator CloseDoor()
     {
         yield return new WaitForSeconds(.15f);

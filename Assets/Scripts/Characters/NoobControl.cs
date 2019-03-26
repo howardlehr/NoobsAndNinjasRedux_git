@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoobControl : MonoBehaviour {
 
     GameObject player;
     Animator anim;
+    public GameObject mySpeechBubble;
     
     Rigidbody2D myRigidBody;
     GameObject[] noobs;
@@ -14,15 +16,30 @@ public class NoobControl : MonoBehaviour {
     public bool dead;
     float localScaleX;
 
-    void Start ()
+    public IEnumerator sayHelp;
+    public IEnumerator blink;
+    public IEnumerator unBlink;
+    
+    void Awake()
     {
         noobRunSpeed = 2f;
         player = GameObject.Find("Player");
         anim = GetComponent<Animator> ();
         localScaleX = transform.localScale.x;
         myRigidBody = GetComponent<Rigidbody2D>();
-        //FindRiders();
-        StartCoroutine(Blink());
+        mySpeechBubble = transform.Find("speech_bubble").gameObject;
+        sayHelp = SayHelp();//making variable so it's stoppable
+        StartCoroutine(sayHelp);
+        blink = Blink();
+        StartCoroutine(blink);
+        unBlink = UnBlink();
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(sayHelp);
+        StopCoroutine(blink);
+        StopCoroutine(unBlink);
     }
 
     //void Update ()
@@ -41,7 +58,7 @@ public class NoobControl : MonoBehaviour {
     //           }
     //       }
     //   }
-    
+
     private void FixedUpdate()//Stop running if button touched
     {
         if(Input.GetButtonDown("Fire1") && !dead)
@@ -57,8 +74,11 @@ public class NoobControl : MonoBehaviour {
         {
             myRigidBody.velocity = new Vector2(noobRunSpeed * (Mathf.Sign(player.transform.position.x - transform.position.x)), 0);
             transform.localScale = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x) * localScaleX, transform.localScale.y);//facing direction
-            anim.SetInteger("AnimState", 3);//1 = run
-            //Debug.Log("RunningToShip");
+            if(mySpeechBubble)
+            {
+                mySpeechBubble.GetComponent<Talk>().FixBackwardText(Mathf.Sign(transform.localScale.x));
+            }
+            anim.SetInteger("AnimState", 3);
         }
     }
 
@@ -68,7 +88,6 @@ public class NoobControl : MonoBehaviour {
         {
             myRigidBody.velocity = new Vector2(0, 0);
             anim.SetInteger("AnimState", 0);
-            //Debug.Log("Stopped Running");
         }
 
     }
@@ -77,10 +96,11 @@ public class NoobControl : MonoBehaviour {
     {
         yield return new WaitForSeconds(Random.Range(2, 9));
         var curState = anim.GetInteger("AnimState");
-        if (curState != 3)
+        if (!dead && curState != 3)
         {
-            anim.SetInteger("AnimState", 1);//1 = blink
+            anim.SetInteger("AnimState", 1);
         }
+        //StartCoroutine(unBlink);
         StartCoroutine(UnBlink());
     }
 
@@ -88,12 +108,71 @@ public class NoobControl : MonoBehaviour {
     {
         yield return new WaitForSeconds(.3f);
         var curState = anim.GetInteger("AnimState");
-        if(curState != 3)
+        if(!dead && curState != 3)
         {
-            anim.SetInteger("AnimState", 0);//1 = unBlink
+            anim.SetInteger("AnimState", 0);
         }
+        //StartCoroutine(blink);
         StartCoroutine(Blink());
     }
+
+    IEnumerator SayHelp()
+    {
+        //Debug.Log("SayHelp started");
+        yield return new WaitForSeconds(Random.Range(3f, 10f));
+        var curState = anim.GetInteger("AnimState");
+        if (!dead && curState != 3)
+        {
+            mySpeechBubble.GetComponent<Talk>().Say("Help!");
+            mySpeechBubble.GetComponent<Talk>().FixBackwardText(Mathf.Sign(transform.localScale.x));
+        }
+        sayHelp = SayHelp();
+        StartCoroutine(sayHelp);
+    }
+
+    public void ShipFull()
+    {
+        if (!dead)
+        {
+            if (sayHelp != null)
+            {
+                StopCoroutine(sayHelp);
+            }
+            mySpeechBubble.GetComponent<Talk>().Say("It's Full");
+            mySpeechBubble.GetComponent<Talk>().FixBackwardText(Mathf.Sign(transform.localScale.x));
+            sayHelp = SayHelp();
+            StartCoroutine(sayHelp);
+        }
+    }
+
+    //IEnumerator Talk(string myText)
+    //{
+    //    yield return new WaitForSeconds(Random.Range(2f,8f));
+    //    mySpeechBubble.SetActive(true);
+    //    FixBackwardText();
+    //    myTextBox.text = myText;
+    //    StartCoroutine(stopTalking);
+    //}
+
+    //public void FixBackwardText()
+    //{
+    //    if (transform.localScale.x < 1)
+    //    {
+    //        myTextBox.transform.localScale = new Vector2(Mathf.Abs(myTextBox.transform.localScale.x) * -1, myTextBox.transform.localScale.y);
+    //    }
+    //    else
+    //    {
+    //        myTextBox.transform.localScale = new Vector2(Mathf.Abs(myTextBox.transform.localScale.x), myTextBox.transform.localScale.y);
+    //    }
+    //}
+
+    //IEnumerator StopTalking()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    mySpeechBubble.SetActive(false);
+    //    myTextBox.text = "???";
+    //    StartCoroutine(sayHelp);
+    //}
 
     public void HeadOff()
     {

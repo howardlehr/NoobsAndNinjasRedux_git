@@ -5,12 +5,14 @@ using UnityEngine;
 public class ContLevel : MonoBehaviour
 {
     public GameObject player;
-    public GameObject oPowerSource;
+    public GameObject power_source;
     public GameObject room_marker;
+    public GameObject treat_spawner;
 
     private GameObject thisRoom;
-    private GameObject powerSourceL;
-    private GameObject powerSourceR;
+    private GameObject power_source_r;
+    private GameObject power_source_l;
+
     private float screenWidthInPoints;
     private float rightEdge;
     private float leftEdge;
@@ -87,8 +89,9 @@ public class ContLevel : MonoBehaviour
             rightEdge += roomWidth * 2;
             if (newRoom == roomsRight-1)
             {
-                powerSourceR = Instantiate(oPowerSource);
-                powerSourceR.transform.position = new Vector2(rightEdge, 0.02f);
+                power_source_r = Instantiate(power_source);
+                power_source_r.transform.position = new Vector2(rightEdge, 0.02f);
+                power_source_r.name = "power_source_r";
             }
         }
 
@@ -108,10 +111,13 @@ public class ContLevel : MonoBehaviour
             leftEdge -= roomWidth * 2;
             if (newRoom == roomsLeft-1)
             {
-                powerSourceL = Instantiate(oPowerSource);
-                powerSourceL.transform.position = new Vector2(leftEdge, 0.02f);
+                power_source_l = Instantiate(power_source);
+                power_source_l.transform.position = new Vector2(leftEdge, 0.02f);
+                power_source_l.name = "power_source_l";
             }
         }
+
+        treat_spawner.GetComponent<TreatSpawner>().FindPowerSources();
     }
 
     List<GameObject> OddEven(int newRoom)
